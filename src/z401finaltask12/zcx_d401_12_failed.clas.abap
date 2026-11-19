@@ -13,15 +13,14 @@ CLASS zcx_d401_12_failed DEFINITION
                    !iv_text   TYPE string OPTIONAL.
 
 ENDCLASS.
-
-
-
+**********************************************************
 CLASS zcx_d401_12_failed IMPLEMENTATION.
 
   METHOD constructor ##ADT_SUPPRESS_GENERATION.
     call METHOD super->constructor
     EXPORTING
      previous = previous.
+
       CLEAR me->textid.
       if textid is INITIAL.
         if_t100_message~t100key     =   if_t100_message=>default_textid.
