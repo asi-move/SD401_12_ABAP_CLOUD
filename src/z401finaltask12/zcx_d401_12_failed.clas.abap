@@ -1,11 +1,22 @@
 CLASS zcx_d401_12_failed DEFINITION
   PUBLIC
     INHERITING FROM cx_static_check
+
   FINAL
   CREATE PUBLIC .
-
   PUBLIC SECTION.
   interfaces if_t100_message.
+       " Definition der Text-ID für die T100-Nachricht
+    constants:
+        Begin of truck_cap_low,
+                msgid   type symsgid    value 'Z12_1MESSAGES',
+                msgno   type symsgno      value '030',
+                attr1 TYPE scx_attrname VALUE 'MV_TEXT',
+                attr2 TYPE scx_attrname VALUE '',
+                attr3 TYPE scx_attrname VALUE '',
+                attr4 TYPE scx_attrname VALUE '',
+              END OF truck_cap_low.
+
   Data: mv_text type string.
   METHODS constructor
          IMPORTING !textid   LIKE if_t100_message=>t100key OPTIONAL

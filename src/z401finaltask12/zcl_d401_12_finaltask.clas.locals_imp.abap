@@ -150,8 +150,12 @@ class lcl_bus implementation.
 
   method constructor.
 
-    super->constructor( iv_make = mv_make iv_model = mv_model iv_price = mv_price iv_color = mv_color ).
-
+    super->constructor(
+    iv_make  = iv_make
+    iv_model = iv_model
+    iv_price = iv_price
+    iv_color = iv_color ).
+  me->mv_seats = iv_seats.
   endmethod.
 
   method get_seats.
@@ -159,7 +163,7 @@ class lcl_bus implementation.
   endmethod.
 
   method display_attributes.
-        rv_output   =  |[BUS]{ super->display_attributes( ) }, Maxseats: { mv_seats } t|.
+        rv_output   =  |[BUS]{ super->display_attributes( ) }, Maxseats: { mv_seats } |.
 
   endmethod.
 
@@ -174,9 +178,9 @@ class lcl_rental definition .
         types: tt_vehicles TYPE STANDARD TABLE OF REF to lcl_vehicle WITH DEFAULT KEY.
 
 
-    METHODS add_vehicle
+    METHODS add_vehicles
         IMPORTING
-            io_vehicle TYPE REF TO lcl_vehicle.
+            io_vehicles TYPE REF TO lcl_vehicle.
     Methods get_vehicles
         RETURNING VALUE(rt_vehicles) TYPE tt_vehicles.
 
@@ -193,8 +197,8 @@ endclass.
 
 class lcl_rental implementation.
 
-  method add_vehicle.
-    APPEND io_vehicle TO mt_vehicles.
+  method add_vehicles.
+    APPEND io_vehicles TO mt_vehicles.
   endmethod.
 
   method check_truck_capacities.
